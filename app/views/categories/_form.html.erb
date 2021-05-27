@@ -1,0 +1,33 @@
+<%= form_with model: category do |form| %>
+
+  <div>
+    <% if category.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Operation failed</h4>
+        <p>Please check the following error(s):</p>
+        <hr>
+        <ul>
+          <% category.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+      <% end %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :name, class: "form-control" , placeholder: "Name" %>
+  </div>
+  <br>
+  <div class="field form-group">
+    <%= form.text_field :description, class: "form-control no-resize" , rows: 10, placeholder: "Description (Optional)"
+      %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+      <%= link_to "Back" , categories_path, class: "btn btn-secondary" %>
+  </div>
+  <% end %>
