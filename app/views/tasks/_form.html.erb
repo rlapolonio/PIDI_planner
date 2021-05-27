@@ -1,0 +1,35 @@
+<%= form_with model: [@category, @category.tasks.build] do |f| %>
+
+<!-- <div>
+  <% if category.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Operation failed</h4>
+      <p>Please check the following error(s):</p>
+      <hr>
+      <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div> -->
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.datetime_local_field :deadline %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

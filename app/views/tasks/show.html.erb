@@ -1,0 +1,17 @@
+<h1>Category_task#show</h1>
+
+<br>
+<h1>
+  <%= @task.name %>
+</h1>
+<p>
+  <%= @task.description %>
+</p>
+<p>
+  <%= @task.deadline.to_date %>
+</p>
+<%= link_to "Edit" , edit_category_task_path(@category, @task), class: "btn btn-primary" %>
+  <%= link_to "Back" , category_tasks_path, class: "btn btn-secondary" %>
+    <%= link_to "Delete" , category_task_path(@category, @task), class: "btn btn-danger" , method: :delete, data: {
+      confirm: "Are you sure?" } %>
+      </div>

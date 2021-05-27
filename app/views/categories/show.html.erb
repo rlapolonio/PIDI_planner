@@ -12,3 +12,6 @@
     <%= link_to "Delete" , category_path(@category), class: "btn btn-danger" , method: :delete, data: {
       confirm: "Are you sure?" } %>
       </div>
+<br>
+<br>
+<%= link_to "Add New Task" , new_category_task_path(@category), class: "btn btn-primary" %>

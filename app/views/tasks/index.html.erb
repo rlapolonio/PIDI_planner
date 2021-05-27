@@ -1,0 +1,26 @@
+<h1>Category_tasks#index</h1>
+
+<h1>
+  <%= @category.name %>
+</h1>
+<p>
+  <%= @category.description %>
+</p>
+
+<% @tasks.each do |task| %>
+  <div>
+    <h3>
+      <%= link_to task.name, category_task_path(@category, task) %>
+    </h3>
+    <p>
+      <%= task.description %>
+    </p>
+
+    <p>
+      <%= task.deadline.to_date %>
+    </p>
+  </div>
+  <% end %>
+
+  <%= link_to "Add New Task" , new_category_task_path(@category) %>
+
