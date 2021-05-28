@@ -1,13 +1,13 @@
-<%= form_with model: [@category, @category.tasks.build] do |f| %>
+<%= form_with model: [@category, @task] do |f| %>
 
-<!-- <div>
-  <% if category.errors.any? %>
+<div>
+  <% if @category.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading">Operation failed</h4>
       <p>Please check the following error(s):</p>
       <hr>
       <ul>
-        <% category.errors.full_messages.each do |message| %>
+        <% @category.errors.full_messages.each do |message| %>
           <li>
             <%= message %>
           </li>
@@ -15,7 +15,7 @@
       </ul>
     </div>
     <% end %>
-</div> -->
+</div>
 
   <p>
     <%= f.label :name %>
