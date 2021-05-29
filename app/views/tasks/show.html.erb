@@ -1,17 +1,27 @@
-<h1>Category_task#show</h1>
+<div class="container w-3/5 bg-gray-400 mx-auto pt-4 h-screen space-y-4  px-3">
+  <div class="container w-full space-y-2">
+    <h1 class="text-5xl font-bold">This is the Category_Task Page</h1>
+    <p class="text-xl pl-2">This shows Tasks details and actions.</p>
+  </div>
 
-<br>
-<h1>
-  <%= @task.name %>
-</h1>
-<p>
-  <%= @task.description %>
-</p>
-<p>
-  <%= @task.deadline.to_date %>
-</p>
-<%= link_to "Edit" , edit_category_task_path(@category, @task), class: "btn btn-primary" %>
-  <%= link_to "Back" , category_tasks_path, class: "btn btn-secondary" %>
-    <%= link_to "Delete" , category_task_path(@category, @task), class: "btn btn-danger" , method: :delete, data: {
-      confirm: "Are you sure?" } %>
-      </div>
+  <div class="container w-full space-y-2">
+    <h1 class="text-4xl font-semibold">
+      <%= @task.name %>
+    </h1>
+    <p class="text-xl pl-2">
+      <%= @task.description %>
+    </p>
+    <p class="text-xl pl-2">
+      <%= @task.deadline.to_date %>
+    </p>
+  </div>
+
+  <div class="container">
+    <%= link_to "Edit" , edit_category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+    <%= link_to "Back" , category_tasks_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+    <%= link_to "Delete" , category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
+        confirm: "Are you sure?" } %>
+  </div>
+
+
+</div>

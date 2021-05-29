@@ -33,10 +33,14 @@
         <p>
           <%= task.description %>
         </p>
-
-        <p>
-          <%= task.deadline.to_date %>
+        <p class="text-right mt-3">
+          <% if task.deadline != nil %>
+            <%= task.deadline.to_date %>
+          <% else %>
+            No deadline
+          <% end %>
         </p>
+
       </div>
     <% end %>
 

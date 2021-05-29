@@ -1,6 +1,10 @@
-Category.create([ { name: "Urgent", description: "Need now, do now." },
-  { name: "Groceries", description: "The other line always moves faster." }])
+category = Category.create({ name: "Urgent", description: "Need now, do now." })
+category = Category.first
+category.tasks.create([ { name: "Pay electricity bill", description: "24/7 aircon pa more.", deadline: Date.tomorrow },
+                      { name: "Pay internet bill", description: "Kahit bayaran mo mabagal pa din.", deadline: Date.tomorrow } ])
 
+
+category = Category.create({ name: "Groceries", description: "The other line always moves faster." })
 category = Category.last
-category.tasks.create([ { name: "first_task", description: "first_task_description", deadline: DateTime.now.tomorrow },
-                       { name: "second_task", description: "second_task_description", deadline: DateTime.now.tomorrow } ])
+category.tasks.create([ { name: "Meat and Fish", description: "Buy at local grocery.", deadline: Date.today },
+                      { name: "Basic Necessities", description: "Buy at local supermarket.", deadline: Date.today } ])
