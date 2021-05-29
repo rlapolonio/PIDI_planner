@@ -1,32 +1,31 @@
 <%= form_with model: category do |form| %>
 
-  <div>
+  <div class="container">
     <% if category.errors.any? %>
-      <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Operation failed</h4>
-        <p>Please check the following error(s):</p>
-        <ul>
-          <% category.errors.full_messages.each do |message| %>
-            <li>
-              <%= message %>
-            </li>
-            <% end %>
-        </ul>
-      </div>
-      <% end %>
+      <h4 class="text-2xl font-semibold">Operation failed</h4>
+      <p>Please check the following error(s):</p>
+      <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li class="list-disc list-inside pl-4">
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    <% end %>
   </div>
 
-  <div class="field form-group">
-    <%= form.text_field :name, class: "form-control" , placeholder: "Name" %>
+  <div class="mt-4">
+    <%= form.text_field :name, class: "form-input w-96" , placeholder: "Name" %>
   </div>
   <br>
   <div class="field form-group">
-    <%= form.text_field :description, class: "form-control no-resize" , rows: 10, placeholder: "Description (Optional)"
+    <%= form.text_field :description, class: "form-textarea w-96" , rows: 10, placeholder: "Description (Optional)"
       %>
   </div>
   <br>
-  <div>
-    <%= form.submit class: "btn btn-primary" %>
-      <%= link_to "Back" , categories_path, class: "btn btn-secondary" %>
-  </div>
-  <% end %>
+
+  <%= form.submit class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl" %>
+  
+  <%= link_to "Back" , categories_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl" %>
+
+<% end %>
