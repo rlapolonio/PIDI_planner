@@ -1,31 +1,29 @@
-<h1>Welcome#index</h1>
-
-<% @categories.each do |category| %>
-  <div>
-    <h3>
-      <%= link_to category.name, category_tasks_path(category) %>
-    </h3>
-    <p>
-      <%= category.description %>
-    </p>
-    <p> Number of remaining tasks:
-      <%= category.tasks.count %>
-    </p>
+<div class="container w-3/5 bg-gray-400 mx-auto pt-4 h-screen space-y-4 px-3">
+  <div class="container w-full">
+    <h1 class="text-5xl font-bold">This is the Welcome Page</h1>
   </div>
-<% end %>
 
-<%= link_to "New Category" , new_category_path %>
+  <button class="bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-2xl">
+    <%= link_to "Add a New Task" , categories_path %>
+  </button>
 
-<h2>Tasks for today:</h2>
-
-<% @tasks.each do |task| %>
-  <% @category = Category.find(task.category_id) %>
-  <div>
-    <h3>
-      <%= link_to task.name, category_task_path(@category, task) %>
-    </h3>
-    <p>
-      <%= task.description %>
-    </p>
+  <div class="container w-full">
+    <div class="container">
+      <h2 class="text-3xl font-bold">Tasks for today:</h2>
+    </div>
+    
+  <div class="container w-full grid grid-cols-4 gap-3 mt-4">
+    <% @tasks.each do |task| %>
+      <% @category = Category.find(task.category_id) %>
+      <div class="bg-gray-200 p-2 border-solid border-2 border-black">
+        <h3 class="text-2xl font-semibold">
+          <%= link_to task.name, category_task_path(@category, task) %>
+        </h3>
+        <p>
+          <%= task.description %>
+        </p>
+      </div>
+    <% end %>
   </div>
-<% end %>
+
+</div>
