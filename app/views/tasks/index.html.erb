@@ -1,51 +1,54 @@
-<div class="container w-3/5 bg-gray-400 mx-auto pt-4 h-screen space-y-4  px-3">
-  <div class="container w-full space-y-2">
-    <h1 class="text-5xl font-bold">This is the New Category_Tasks Page</h1>
-    <p class="text-xl pl-2">This shows Category details and actions, and all Tasks under it.</p>
-  </div>
+<div class="container w-3/5 bg-gray-200 mx-auto h-screen space-y-4">
 
-  <div class="container w-full space-y-2">
-    <h1 class="text-4xl font-semibold">
-      <%= @category.name %>
+  <div class="container w-full border-b-2 border-gray-300 px-10 py-4">
+    <h1 class="text-3xl font-bold">
+      <%= @category.name.upcase %>
     </h1>
-    <p class="text-xl pl-2">
-      <%= @category.description %>
-    </p>
   </div>
 
-  <div class="container w-full">
-    <%= link_to "Edit" , edit_category_path(@category), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
-    <%= link_to "Back" , categories_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
-    <%= link_to "Delete" , category_path(@category), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
-          confirm: "Are you sure?" } %>
+  <div class="container w-full border-b-2 border-gray-300 px-10 pb-4 flex justify-between">
+    <div>
+      <p class="text-xl">
+        <%= @category.description %>
+      </p>
+    </div>
+    <div>
+      <%= link_to "Back" , categories_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+      <%= link_to "Edit" , edit_category_path(@category), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+      <%= link_to "Delete" , category_path(@category), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
+            confirm: "Are you sure?" } %>
+    </div>
   </div>
 
-  <div class="container w-full">
+  <div class="container w-full px-10 py-4">
     <%= link_to "Add New Task" , new_category_task_path(@category), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl" %>
   </div>
-  
-  <div class="container w-full grid grid-cols-4 gap-3">
-    <% @tasks.each do |task| %>
-      <div class="bg-gray-200 p-2 border-solid border-2 border-black">
-        <h3 class="text-2xl font-semibold">
-          <%= link_to task.name, category_task_path(@category, task) %>
-        </h3>
-        <p>
-          <%= task.description %>
-        </p>
-        <p class="text-right mt-3">
-          <% if task.deadline != nil %>
-            <%= task.deadline.to_date %>
-          <% else %>
-            No deadline
-          <% end %>
-        </p>
 
-      </div>
-    <% end %>
-
-
+  <div class="container w-full px-10 space-y-4">
+    <div class="container w-full grid grid-cols-3 gap-x-4 gap-y-6 mt-6">
+      <% @tasks.each do |task| %>
+        <div class="relative bg-gray-200 border-solid border-2 border-black rounded-xl h-40 py-2 px-3">
+          <h3 class="text-2xl font-semibold">
+            <%= link_to task.name, category_task_path(@category, task) %>
+          </h3>
+          <p>
+            <%= task.description %>
+          </p>
+          <div class="absolute bottom-2 right-3 text-right">
+            <% if task.deadline != nil %>
+              <%= task.deadline.strftime("%A, %B %d %Y") %>
+            <% else %>
+              No deadline
+            <% end %>
+          </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
+
+  
+  
 
 
 

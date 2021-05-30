@@ -1,27 +1,33 @@
-<div class="container w-3/5 bg-gray-400 mx-auto pt-4 h-screen space-y-4 px-3">
-  <div class="container w-full">
-    <h1 class="text-5xl font-bold">This is the Welcome Page</h1>
+<div class="container w-3/5 bg-gray-200 mx-auto h-screen space-y-4">
+  <div class="container w-full border-b-2 border-gray-300 px-10 py-4">
+    <h1 class="text-3xl font-bold">HOME</h1>
   </div>
 
-  <button class="bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-2xl">
-    <%= link_to "Add a New Task" , categories_path %>
-  </button>
-
-  <div class="container w-full">
-    <div class="container">
-      <h2 class="text-3xl font-bold">Tasks for today:</h2>
+  <div class="container w-full px-10 border-b-2 border-gray-300 pb-5  ">
+    <div class="container flex items-center justify-between">
+      <h2 class="text-2xl font-bold">Tasks for today:
+        <%= Date.today.strftime("%A, %B %d %Y") %></h2>
+      <button class="bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl">
+        <%= link_to "Add a New Task" , categories_path %>
+      </button>
     </div>
     
-  <div class="container w-full grid grid-cols-4 gap-3 mt-4">
+  <div class="container w-full grid grid-cols-3 gap-x-4 gap-y-6 mt-6">
     <% @tasks.each do |task| %>
       <% @category = Category.find(task.category_id) %>
-      <div class="bg-gray-200 p-2 border-solid border-2 border-black">
-        <h3 class="text-2xl font-semibold">
-          <%= link_to task.name, category_task_path(@category, task) %>
-        </h3>
-        <p>
-          <%= task.description %>
-        </p>
+      <div class="relative bg-gray-200 border-solid border-2 border-black rounded-xl h-36">
+        <div class="container w-full py-2 px-3">
+          <h3 class="text-xl font-semibold">
+            <%= link_to task.name, category_task_path(@category, task) %>
+          </h3>
+          <p>
+            <%= task.description %>
+          </p>
+        </div>
+        
+        <div class="absolute bottom-0 px-1 border-solid border-t border-black w-full text-center">
+          <%= @category.name %>
+        </div>
       </div>
     <% end %>
   </div>

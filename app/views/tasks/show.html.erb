@@ -1,27 +1,27 @@
-<div class="container w-3/5 bg-gray-400 mx-auto pt-4 h-screen space-y-4  px-3">
-  <div class="container w-full space-y-2">
-    <h1 class="text-5xl font-bold">This is the Category_Task Page</h1>
-    <p class="text-xl pl-2">This shows Tasks details and actions.</p>
-  </div>
+<div class="container w-3/5 bg-gray-200 mx-auto h-screen space-y-4">
 
-  <div class="container w-full space-y-2">
-    <h1 class="text-4xl font-semibold">
-      <%= @task.name %>
+  <div class="container w-full border-b-2 border-gray-300 px-10 py-4">
+    <h1 class="text-3xl font-bold">
+      <%= @task.name.upcase %>
     </h1>
-    <p class="text-xl pl-2">
-      <%= @task.description %>
-    </p>
-    <p class="text-xl pl-2">
-      <%= @task.deadline.to_date %>
-    </p>
   </div>
 
-  <div class="container">
-    <%= link_to "Edit" , edit_category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
-    <%= link_to "Back" , category_tasks_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
-    <%= link_to "Delete" , category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
-        confirm: "Are you sure?" } %>
+  <div class="container w-full px-10 pb-4 flex justify-between">
+    <div>
+      <p class="text-xl">
+        <%= @task.description %>
+      </p>
+      <br>
+      <p class="text-xl">
+        Deadline: <%= @task.deadline.strftime("%A, %B %d %Y") %>
+      </p>
+    </div>
+    <div>
+      <%= link_to "Back" , category_tasks_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+      <%= link_to "Edit" , edit_category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+      <%= link_to "Delete" , category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
+          confirm: "Are you sure?" } %>
+    </div>
   </div>
-
 
 </div>
