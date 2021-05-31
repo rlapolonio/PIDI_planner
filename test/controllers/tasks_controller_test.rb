@@ -2,6 +2,9 @@ require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
+    get '/users/sign_in'
+    sign_in users(:user01)
+    post user_session_path
     @category = Category.create(name: 'Test Category')
     @task = @category.tasks.build(name: 'test task', description: 'test description', deadline: DateTime.now.tomorrow)
     @task.save

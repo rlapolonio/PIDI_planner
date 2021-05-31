@@ -1,6 +1,12 @@
 require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    get '/users/sign_in'
+    sign_in users(:user01)
+    post user_session_path
+  end
+  
   test "should get index" do
     get categories_path
     assert_response :success
