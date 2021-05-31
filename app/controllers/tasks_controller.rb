@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-    before_action :get_category
+  before_action :authenticate_user!  
+  before_action :get_category
 
   def index
     @tasks = @category.tasks

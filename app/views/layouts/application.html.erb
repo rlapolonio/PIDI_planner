@@ -12,9 +12,9 @@
   </head>
 
   <body>
-    <% if notice %>
-    <%= render 'shared/notice' %>
-      <% end %>
+    <% if notice || alert %>
+      <%= render 'shared/notice' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

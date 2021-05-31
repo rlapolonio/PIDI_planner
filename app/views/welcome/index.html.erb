@@ -8,7 +8,7 @@
       <h2 class="text-2xl font-bold">Tasks for today:
         <%= Date.today.strftime("%A, %B %d %Y") %></h2>
       <button class="bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl">
-        <%= link_to "Add a New Task" , categories_path %>
+        <%= link_to "Add a New Task" , categories_path, title:"Add a New Task" %>
       </button>
     </div>
     
