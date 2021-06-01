@@ -5,9 +5,8 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     get '/users/sign_in'
     sign_in users(:user01)
     post user_session_path
-    @category = Category.create(name: 'Test Category')
-    @task = @category.tasks.build(name: 'test task', description: 'test description', deadline: DateTime.now.tomorrow)
-    @task.save
+    @category = categories(:one)
+    @task = tasks(:one)
   end
 
   test "should get index" do

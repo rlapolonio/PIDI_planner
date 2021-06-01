@@ -2,13 +2,10 @@ require "test_helper"
 
 class TaskTest < ActiveSupport::TestCase
   setup do
-    @category = Category.create(name: 'Test Category')
+    @current_user = users(:user01)
+    @category = categories(:one)
   end
-
-  teardown do
-    Rails.cache.clear
-  end
-
+  
   test "should create valid task under existing category" do
     task = @category.tasks.build(name: 'test task name', description: 'test task description', deadline: DateTime.now.tomorrow.to_date)
     assert_difference '@category.tasks.count', 1 do

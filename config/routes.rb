@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/' => 'welcome#index'
   resources :categories do
     resources :tasks
-  end
+  end 
 end

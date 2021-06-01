@@ -23,6 +23,9 @@
       %>
   </div>
   <br>
+  <div class="field form-group">
+    <%= form.number_field :user_id, id: :category_user_id, value: current_user.id, type: :hidden %>
+  </div>
 
   <%= form.submit class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
   
