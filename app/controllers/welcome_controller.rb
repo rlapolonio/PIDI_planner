@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     @tasks = []
     @list = Task.where(deadline: Date.today).or(Task.where(deadline: nil))
     @list.each do |t|
-      if @category_id_list.include?(t.category_id) && (t.deadline == Date.today || t.deadline == nil)
+      if @category_id_list.include?(t.category_id)
         @tasks << t
       end
     end
