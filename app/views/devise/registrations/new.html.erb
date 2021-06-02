@@ -17,6 +17,10 @@
             <%= f.email_field :email, autofocus: true, class: "w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline mt-2" , autocomplete: "email" %>
           </div>
 
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div class="mb-4 field mt-4 px-12">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
           <div class="mb-4 field px-12">
             <%= f.label :password, class: "mb-2 text-sm font-bold text-gray-700" %><br />
             <%= f.password_field :password, autocomplete: "current-password", class: "w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline mt-2" %>
