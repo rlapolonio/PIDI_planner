@@ -32,15 +32,18 @@
       </style>
   </head>
 
-  <body class="bg-body">
+  <body class="bg-body relative min-h-screen">
     <%= render 'shared/nav' %>
     
     <% if notice %>
       <%= render 'shared/notice' %>
     <% end %>
     <% if alert %>
-    <%= render 'shared/alert' %>
-  <% end %>
+      <%= render 'shared/alert' %>
+    <% end %>
+
     <%= yield %>
+
+
   </body>
 </html>
