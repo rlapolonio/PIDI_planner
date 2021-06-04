@@ -17,7 +17,7 @@
       </p>
     </div>
     <div>
-      <%= link_to "Back" , category_tasks_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+      <%= link_to "Back" , :back, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
       <%= link_to "Edit" , edit_category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
       <%= link_to "Delete" , category_task_path(@category, @task), class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" , method: :delete, data: {
           confirm: "Are you sure?" } %>

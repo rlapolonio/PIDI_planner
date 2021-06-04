@@ -1,34 +1,73 @@
-<div class="container w-3/5 bg-gray-200 mx-auto h-screen space-y-4">
-  <div class="container w-full border-b-2 border-gray-300 px-10 py-4">
-    <h1 class="text-3xl font-bold">HOME</h1>
+<div class="container max-w-7xl mx-auto h-screen space-y-4">
+
+  <div class="container flex flex-row items-center px-5 py-16 mx-auto">
+    <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0">
+      <h2 class="mb-4 text-xl font-semibold tracking-widest text-black uppercase title-font"> <%= Date.today.strftime("%A, %B %d %Y") %> </h2>
+      <h1 class="mb-6 text-2xl font-bold text-black md:text-5xl title-font"> Welcome back, <%= current_user.email.split('@')[0].capitalize %></h1>
+      <p class="mb-8 text-lg leading-relaxed text-left text-blueGray-600 italic"> "<%= Faker::Quote.famous_last_words %>" </p>
+      <div class="flex flex-col justify-center items-center lg:flex-row">
+        <button class="flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 text-lg">
+          <%= link_to "Add a New Task" , categories_path, title:"Add a New Task" %>
+        </button>
+        <p class="mt-2 text-sm text-left text-gray-600 md:ml-2 md:mt-0"> Add a new Task to an existing category, or create a new one.
+        </p>
+      </div>
+    </div>
+    <div class="w-full lg:w-5/6 lg:max-w-lg md:w-1/2">
+      <img class="object-cover object-center rounded-lg " alt="hero" src="https://dummyimage.com/720x600/F3F4F7/8693ac">
+    </div>
   </div>
 
-  <div class="container w-full px-10 border-b-2 border-gray-300 pb-5  ">
+  
+  <div class="container w-full border-b-2 border-gray-300 px-4 py-4 flex justify-between">
+    <div class="text-3xl font-bold">Welcome back, <%= current_user.email.split('@')[0].capitalize %>!</div>
+    <div class="text-2xl font-bold"><%= Date.today.strftime("%A, %B %d %Y") %></div>
+  </div>
+
+  <div class="container w-full px-4 border-b-2 border-gray-300 pb-5">
     <div class="container flex items-center justify-between">
-      <h2 class="text-2xl font-bold">Tasks for today:
-        <%= Date.today.strftime("%A, %B %d %Y") %></h2>
+      <% if @tasks.count > 0 %>
+        <h2 class="text-2xl font-bold">Tasks for today:</h2>
+      <% else %>
+        <h2 class="text-2xl font-bold">You have no tasks for today!</h2>
+      <% end %>
+      
       <button class="bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-xl">
-        <%= link_to "Add a New Task" , categories_path, title:"Add a New Task" %>
+        <%= link_to "Create a New Task" , categories_path, title:"Add a New Task" %>
       </button>
     </div>
     
-  <div class="container w-full grid grid-cols-3 gap-x-4 gap-y-6 mt-6">
+  <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 mt-6">
     <% @tasks.each do |task| %>
       <% @category = Category.find(task.category_id) %>
-      <div class="relative bg-gray-200 border-solid border-2 border-black rounded-xl h-36">
-        <div class="container w-full py-2 px-3">
-          <h3 class="text-xl font-semibold">
-            <%= link_to task.name, category_task_path(@category, task) %>
-          </h3>
-          <p>
-            <%= task.description %>
-          </p>
-        </div>
-        
-        <div class="absolute bottom-0 px-1 border-solid border-t border-black w-full text-center">
-          <%= @category.name %>
+      
+      <div class="w-full my-4 bg-white border rounded-lg shadow-xl">
+        <div class="py-2 px-4">
+          <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font"><%= @category.name %></h2>
+          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font "><%= link_to task.name, category_task_path(@category, task), title: "Show Task" %></h4>
+          <p class="mb-6 text-base leading-relaxed text-gray-500"><%= task.description %></p>
+          <div class="flex flex-wrap justify-end items-center">
+            <%= link_to category_task_path(@category, task), title: "Show Task", class: "ml-2 text-green-600 hover:text-black" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+              </svg>
+            <% end %>
+            <%= link_to edit_category_task_path(@category, task), title: "Edit Task", class: "ml-2 text-green-600 hover:text-black" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+              </svg>
+            <% end %>
+            <%= link_to category_task_path(@category, task), title: "Delete Task", class: "ml-2 text-red-600 hover:text-black" , method: :delete, data: {
+              confirm: "Are you sure?" } do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+            <% end %>
+          </div>
         </div>
       </div>
+      
     <% end %>
   </div>
 
