@@ -1,5 +1,6 @@
 require 'faker'
 
+User.create(email: 'rhen@123.com', password: '123456')
 current_user = User.create(email: 'test@123.com', password: '123456')
 
 category = current_user.categories.create({ name: "Urgent", description: "Need now, do now." })
