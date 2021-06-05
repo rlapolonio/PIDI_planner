@@ -3,15 +3,7 @@ class TasksController < ApplicationController
   before_action :get_category
 
   def index
-    @categories = current_user.categories.all
-    @category_id_list = @categories.map { |cat| cat.id }.uniq
-    @tasks = []
-    @list = Task.all
-    @list.each do |t|
-      if @category_id_list.include?(t.category_id)
-        @tasks << t
-      end
-    end
+    @tasks = @category.tasks.all
   end
 
   def show
