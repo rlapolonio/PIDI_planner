@@ -1,4 +1,4 @@
-<div class="container max-w-7xl mx-auto space-y-4 pb-12">
+<div class="container max-w-7xl mx-auto space-y-6 pb-12">
 
   <div class="container flex flex-row items-center px-5 mx-auto">
     <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-white border rounded-lg shadow-xl">
@@ -30,15 +30,15 @@
   </div>
   
   <% if @tasks.count > 0 %>
-  <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 mt-6">
+  <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 my-6">
     <% @tasks.each do |task| %>
       <% @category = Category.find(task.category_id) %>
-      <div class="w-full my-4 bg-white border rounded-lg shadow-xl">
+      <div class="w-full bg-white border rounded-lg shadow-xl relative">
         <div class="py-2 px-4">
-          <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font"><%= @category.name %></h2>
-          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font "><%= link_to task.name, category_task_path(@category, task), title: "Show Task" %></h4>
+          <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font "><%= @category.name %></h2>
+          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font hover:text-yellow-400 "><%= link_to task.name, category_task_path(@category, task), title: "Show Task" %></h4>
           <p class="mb-6 text-base leading-relaxed text-gray-500"><%= task.description %></p>
-          <div class="flex flex-wrap justify-end items-center">
+          <div class="flex flex-wrap justify-end items-center absolute bottom-2 right-2">
             <%= link_to category_task_path(@category, task), title: "Show Task", class: "ml-2 text-green-800 hover:text-green-800" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
@@ -57,6 +57,13 @@
               </svg>
             <% end %>
           </div>
+        </div>
+      </div>
+    <% end %>
+    <% if @tasks2.count > 7 %>
+      <div class="w-full bg-green-400 border rounded-lg shadow-xl relative grid items-center justify-center">
+        <div class="py-2 px-4">
+          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-white title-font ">and <%= @tasks2.count - 7 %> more...</h4>
         </div>
       </div>
     <% end %>
@@ -79,14 +86,14 @@
   </div>
 
   <% if @categories.count > 0 %>
-  <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 mt-6">
+  <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 my-6">
     <% @categories.each do |category| %>
-      <div class="w-full my-4 bg-white border rounded-lg shadow-xl">
+      <div class="w-full bg-white border rounded-lg shadow-xl relative">
         <div class="py-2 px-4">
           <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font">Pending Tasks: <%= category.tasks.count %></h2>
-          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font "><%= link_to category.name, category_path(category), title: "Show Task" %></h4>
-          <p class="mb-6 text-base leading-relaxed text-gray-500"><%= category.description %></p>
-          <div class="flex flex-wrap justify-end items-center">
+          <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font hover:text-yellow-400 "><%= link_to category.name, category_path(category), title: "Show Task" %></h4>
+          <p class="mb-8 text-base leading-relaxed text-gray-500"><%= category.description %></p>
+          <div class="flex flex-wrap justify-end items-center absolute bottom-2 right-2">
             <%= link_to category_path(category), title: "Show Category", class: "ml-2 text-green-800 hover:text-green-800" do %>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
@@ -105,6 +112,15 @@
               </svg>
             <% end %>
           </div>
+        </div>
+      </div>
+    <% end %>
+    <% if @categories2.count > 11 %>
+      <div class="w-full bg-green-400 border rounded-lg shadow-xl relative grid items-center justify-center">
+        <div class="py-2 px-4">
+          <%= link_to categories_path, title: "Show Categories" do %>
+            <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-white title-font hover:text-yellow-200 ">See all <%= @categories2.count %> Categories</h4>
+          <% end %>
         </div>
       </div>
     <% end %>
