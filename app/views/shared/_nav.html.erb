@@ -22,7 +22,7 @@
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-gray-300 hover:text-red-500 p-1 rounded-md text-lg font-medium'  %>
           <% else %>
             <%= link_to "Sign up", new_user_registration_path, :class => 'text-gray-200 hover:text-yellow-200 p-1 rounded-md text-lg font-medium' %> |
-            <%= link_to "Login", new_user_session_path, :class => 'text-gray-300 hover:text-red-500 p-1 rounded-md text-lg font-medium' %>
+            <%= link_to "Login", new_user_session_path, :class => 'text-gray-300 hover:text-yellow-200 p-1 rounded-md text-lg font-medium' %>
           <% end %>
         </p>
       </div>

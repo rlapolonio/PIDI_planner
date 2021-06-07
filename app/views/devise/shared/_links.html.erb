@@ -1,6 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <div class="text-center">
-    <%= link_to "Log in", new_session_path(resource_name), class: "inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" %><br />
+  <div class="text-center text-sm">
+    Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" %><br />
   </div>
 <% end %>
 
