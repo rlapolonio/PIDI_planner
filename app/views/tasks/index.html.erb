@@ -4,9 +4,9 @@
     <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-white border rounded-lg shadow-xl relative mr-6">
       <h2 class="mb-4 text-xl font-semibold tracking-wider text-black uppercase title-font"> Category </h2>
       <h1 class="mb-6 text-xl font-bold text-black md:text-5xl title-font"><%= @category.name %></h1>
-      <p class="mb-16 text-lg leading-relaxed text-left text-blueGray-600 italic"><%= @category.description %></p>
+      <p class="mb-16 text-lg leading-relaxed text-left text-blueGray-600"><%= @category.description %></p>
       <div class="flex flex-wrap justify-end items-center absolute right-8 bottom-6">
-        <%= link_to :back , title: "Back", class: "ml-2 text-green-800 hover:text-green-800" do %>
+        <%= link_to :back , title: "Back", class: "ml-2 text-green-800 hover:text-green-800", title: "Edit Task" do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
           </svg>
@@ -34,7 +34,7 @@
     <% if @tasks.count > 0 %>
       <h2 class="text-2xl font-semibold">Pending Tasks: <%= @tasks.count %></h2>
     <% else %>
-      <h2 class="text-2xl font-semibold">You have no tasks for today!</h2>
+      <h2 class="text-2xl font-semibold">You have no tasks yet. Create one now.</h2>
     <% end %>
     <button class="flex items-center px-6 py-2 mt-auto font-semibold text-black transition duration-500 ease-in-out transform bg-yellow-200 rounded-lg hover:bg-yellow-300 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 text-lg">
       <%= link_to "Add a New Task" , new_category_task_path(@category), title:"Add a New Task" %>
@@ -79,11 +79,6 @@
     </div>
   <% end %>
   
-  
-
-
-
-
-
 </div>
 
+<%= render 'shared/footer' %>

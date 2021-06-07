@@ -1,6 +1,6 @@
 <%= form_with model: category do |form| %>
 
-  <div class="container">
+  <div class="container w-full">
     <% if category.errors.any? %>
       <h4 class="text-2xl font-semibold">Operation failed</h4>
       <p>Please check the following error(s):</p>
@@ -14,21 +14,18 @@
     <% end %>
   </div>
 
-  <div class="mt-4">
-    <%= form.text_field :name, class: "form-input w-96" , placeholder: "Name" %>
-  </div>
-  <br>
-  <div class="field form-group">
-    <%= form.text_field :description, class: "form-textarea w-96" , rows: 10, placeholder: "Description (Optional)"
-      %>
-  </div>
-  <br>
-  <div class="field form-group">
-    <%= form.number_field :user_id, id: :category_user_id, value: current_user.id, type: :hidden %>
-  </div>
+  <%= form.text_field :name, class: "form-input w-full mb-6" , placeholder: "Name" %>
+ 
+  <%= form.text_field :description, class: "form-textarea w-full mb-6" , rows: 10, placeholder: "Description (Optional)" %>
 
-  <%= form.submit class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+  <%= form.number_field :user_id, id: :category_user_id, value: current_user.id, type: :hidden %>
+
+  <div class="flex flex-col w-full items-center lg:flex-row mt-4">
+
+    <%= link_to "Back" , :back , class: "flex items-center px-6 py-2 mt-auto font-semibold text-black transition duration-500 ease-in-out transform bg-yellow-200 rounded-lg hover:bg-yellow-300 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 text-lg border-2 border-gray-400 mr-2 cursor-pointer" %>
+
+    <%= form.submit class: "flex items-center px-6 py-2 mt-auto font-semibold text-black transition duration-500 ease-in-out transform bg-yellow-200 rounded-lg hover:bg-yellow-300 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 text-lg border-2 border-gray-400 cursor-pointer" %>
   
-  <%= link_to "Back" , categories_path, class: "bg-blue-500 px-4 py-2 font-semibold text-white rounded hover:bg-blue-600 text-lg" %>
+  </div>
 
 <% end %>
