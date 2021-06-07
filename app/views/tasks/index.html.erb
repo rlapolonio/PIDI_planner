@@ -1,7 +1,7 @@
 <div class="container max-w-7xl mx-auto space-y-6 pb-12">
 
   <div class="container flex flex-row items-center px-5 mx-auto pt-6">
-    <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-white border rounded-lg shadow-xl relative mr-6">
+    <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-card border rounded-lg shadow-xl relative mr-6">
       <h2 class="mb-4 text-xl font-semibold tracking-wider text-black uppercase title-font"> Category </h2>
       <h1 class="mb-6 text-xl font-bold text-black md:text-5xl title-font"><%= @category.name %></h1>
       <p class="mb-16 text-lg leading-relaxed text-left text-blueGray-600"><%= @category.description %></p>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="container w-full px-6 py-4 pb-5 bg-green-800 flex items-center text-white rounded-lg justify-between">
+  <div class="container w-full px-6 py-4 pb-5 bg-header flex items-center text-white rounded-lg justify-between">
     <% if @tasks.count > 0 %>
       <h2 class="text-2xl font-semibold">Pending Tasks: <%= @tasks.count %></h2>
     <% else %>
@@ -52,7 +52,13 @@
       <% @category = Category.find(task.category_id) %>
       <div class="w-full bg-white border rounded-lg shadow-xl relative">
         <div class="py-2 px-4">
-          <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font "><%= @category.name %></h2>
+          <h2 class="pt-4 mb-4 text-xs font-semibold tracking-widest text-black uppercase title-font ">
+            <% if task.deadline != nil %>
+              <%= task.deadline.strftime("%A, %B %d %Y") %>
+            <% else %>
+              no deadline
+            <% end %>
+          </h2>
           <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-black title-font hover:text-yellow-400 "><%= link_to task.name, category_task_path(@category, task), title: "Show Task" %></h4>
           <p class="mb-10 text-base leading-relaxed text-gray-500"><%= task.description %></p>
           <div class="flex flex-wrap justify-end items-center absolute bottom-4 right-4">

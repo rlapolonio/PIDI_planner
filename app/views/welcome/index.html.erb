@@ -1,7 +1,7 @@
 <div class="container max-w-7xl mx-auto space-y-6 pb-12">
 
   <div class="container flex flex-row items-center px-5 mx-auto">
-    <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-white border rounded-lg shadow-xl">
+    <div class="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0 px-8 py-6 bg-card border rounded-lg shadow-xl">
       <h2 class="mb-4 text-xl font-semibold tracking-wider text-black uppercase title-font"> <%= Date.today.strftime("%A, %B %d %Y") %> </h2>
       <h1 class="mb-6 text-2xl font-bold text-black md:text-5xl title-font"> Welcome back, <%= current_user.email.split('@')[0].capitalize %></h1>
       <p class="mb-8 text-lg leading-relaxed text-left text-blueGray-600 italic"> "<%= Faker::Quote.famous_last_words %>" </p>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="container w-full px-6 py-4 pb-5 bg-green-800 flex items-center text-white rounded-lg justify-between">
+  <div class="container w-full px-6 py-4 pb-5 bg-header flex items-center text-white rounded-lg justify-between">
       <% if @tasks.count > 0 %>
         <h2 class="text-2xl font-semibold">Tasks for today:</h2>
       <% else %>
@@ -74,7 +74,7 @@
     </div>
   <% end %>
 
-  <div class="container w-full px-6 py-4 pb-5 bg-green-800 flex items-center text-white rounded-lg justify-between">
+  <div class="container w-full px-6 py-4 pb-5 bg-header flex items-center text-white rounded-lg justify-between">
     <% if @categories.count > 0 %>
       <h2 class="text-2xl font-semibold">Available Categories:</h2>
     <% else %>
