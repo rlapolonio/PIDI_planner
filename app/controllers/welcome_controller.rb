@@ -13,6 +13,7 @@ class WelcomeController < ApplicationController
         @tasks << t
       end
     end
+
     @tasks2 = []
     @list2 = Task.where(deadline: Date.today).or(Task.where(deadline: nil))
     @list2.each do |t|
@@ -20,5 +21,14 @@ class WelcomeController < ApplicationController
         @tasks2 << t
       end
     end
+
+    @overdue_tasks = []
+    @overdue_list = Task.where(deadline: Date.today.at_beginning_of_year..Date.yesterday)
+    @overdue_list.each do |t|
+      if @category_id_list.include?(t.category_id)
+        @overdue_tasks << t
+      end
+    end
+
   end
 end
