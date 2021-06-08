@@ -74,9 +74,9 @@
     </div>
   <% end %>
 
-  <% if @overdue_tasks.count > 0 %>
+  <% if @overdue_tasks2.count > 0 %>
     <div class="container w-full px-6 py-6 pb-5 bg-red-700 flex items-center text-white rounded-lg justify-between">
-      <h2 class="text-2xl font-semibold">You have <%= @overdue_tasks.count %> overdue task<% if @overdue_tasks.count > 1 %>s<% end %>!</h2>
+      <h2 class="text-2xl font-semibold">You have <%= @overdue_tasks2.count %> overdue task<% if @overdue_tasks.count > 1 %>s<% end %>!</h2>
     </div>
     <div class="container w-full grid grid-cols-4 gap-x-4 gap-y-6 my-6">
       <% @overdue_tasks.each do |task| %>
@@ -108,10 +108,10 @@
           </div>
         </div>
       <% end %>
-      <% if @tasks2.count > 7 %>
-        <div class="w-full bg-green-400 border rounded-lg shadow-xl relative grid items-center justify-center">
+      <% if @overdue_tasks2.count > 7 %>
+        <div class="w-full bg-red-700 border rounded-lg shadow-xl relative grid items-center justify-center">
           <div class="py-2 px-4">
-            <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-white title-font ">. . . and <%= @tasks2.count - 7 %> more</h4>
+            <h4 class="mb-4 text-2xl font-semibold leading-none tracking-tighter text-white title-font ">. . . and <%= @overdue_tasks2.count - 7 %> more</h4>
           </div>
         </div>
       <% end %>

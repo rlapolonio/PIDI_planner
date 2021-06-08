@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :get_category
 
   def index
-    @tasks = @category.tasks.all
+    @tasks = @category.tasks.all.order(updated_at: :desc)
   end
 
   def show
